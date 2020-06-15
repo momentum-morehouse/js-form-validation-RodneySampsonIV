@@ -35,11 +35,27 @@ function validate() {
 
     let fields = [customerField, carField, carField, carField, startDateField, amountOfDaysField, creditCardField, creditCardCVVField, creditCardDateField, creditCardDateInput];
 
+    let invalidFieldMessages = ["Name is required.",  
+    "Make is required. ",
+    "Model is required. ",
+    "Year is required.", 
+    "Date is required.",
+    "Number of days is required.",
+    "Credit card number is required.",
+    "CVV is required.",
+    "Expiration date is required",];
+
+
     for (var index = 0; index < inputs.length; index++) {
-        if (inputs[index].value.length === 0) {
-            fields[index].className = "input-field input-invalid";
+        let field = fields[index]
+        if (inputs[index].value.length <= 0) {
+            field.className = "input-field input-invalid";
+            let message = invalidFieldMessages[index];
+            let text = document.createTextNode(message);
+            field.appendChild(text);
         } else {
-        	fields[index].className = "input-field input-valid";
+        	field.className = "input-field input-valid";
+            field.removeChild(text);
 		}
     }
 	
